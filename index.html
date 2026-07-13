@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srinidhi Shetty — Electronics & Communication Engineer</title>
+<meta name="description" content="Portfolio of Srinidhi Shetty — ECE engineer, VLSI & embedded systems builder, space-tech enthusiast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#07081a;
+    --bg-panel:#0f1230;
+    --bg-panel-2:#141a3d;
+    --line: rgba(167,139,250,0.16);
+    --ink:#e7e6f5;
+    --ink-dim:#9391b8;
+    --violet:#a78bfa;
+    --violet-dim:#6c5db8;
+    --cyan:#5eead4;
+    --amber:#f6c177;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  ::selection{background:var(--violet-dim);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- starfield ---------- */
+  #stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 6vw;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(to bottom, rgba(7,8,26,0.85), transparent);
+  }
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);}
+  .logo span{color:var(--violet);}
+  .navlinks{display:flex;gap:32px;font-size:0.9rem;color:var(--ink-dim);}
+  .navlinks a{transition:color .25s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--cyan);}
+  .navlinks{display:none;}
+  @media(min-width:760px){.navlinks{display:flex;}}
+
+  section{position:relative;z-index:1;padding:120px 6vw;max-width:1180px;margin:0 auto;}
+  section#hero{padding-top:160px;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--cyan);
+    display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--cyan);display:inline-block;}
+
+  /* ---------- hero ---------- */
+  #hero{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;}
+  @media(min-width:900px){#hero{grid-template-columns:1.25fr 0.9fr;}}
+  .hero-text h1{font-size:clamp(2.4rem,5.4vw,4.1rem);font-weight:700;line-height:1.05;color:var(--ink);}
+  .hero-text h1 .accent{color:var(--violet);}
+  .hero-role{
+    margin-top:20px;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--ink-dim);
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+  }
+  .hero-role .sep{color:var(--violet);margin:0 8px;}
+  .hero-desc{margin-top:22px;max-width:520px;color:var(--ink-dim);font-size:1rem;}
+  .hero-cta{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.92rem;
+    padding:13px 26px;border-radius:999px;border:1px solid var(--line);
+    transition:transform .25s, border-color .25s, background .25s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-solid{background:var(--violet);color:#0a0a1a;border-color:var(--violet);}
+  .btn-solid:hover{transform:translateY(-2px);background:#bda6ff;}
+  .btn-ghost{color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);}
+
+  /* orbit portrait — signature element */
+  .orbit-wrap{position:relative;width:min(360px,80vw);aspect-ratio:1/1;margin:0 auto;}
+  .orbit-ring{
+    position:absolute;inset:0;border-radius:50%;
+    border:1px dashed rgba(167,139,250,0.35);
+    animation:spin 34s linear infinite;
+  }
+  .orbit-ring.r2{inset:22px;border-color:rgba(94,234,212,0.28);animation-duration:22s;animation-direction:reverse;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .sat{
+    position:absolute;width:10px;height:10px;border-radius:50%;
+    background:var(--cyan);box-shadow:0 0 12px 3px rgba(94,234,212,0.7);
+    top:-5px;left:calc(50% - 5px);
+  }
+  .sat2{background:var(--amber);box-shadow:0 0 12px 3px rgba(246,193,119,0.6);width:7px;height:7px;top:-4px;left:calc(50% - 4px);}
+  .portrait{
+    position:absolute;inset:40px;border-radius:50%;overflow:hidden;
+    border:2px solid rgba(231,230,245,0.15);
+    box-shadow:0 0 60px rgba(167,139,250,0.25), inset 0 0 40px rgba(0,0,0,0.4);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
+
+  /* ---------- divider (circuit trace) ---------- */
+  .trace{width:100%;height:40px;opacity:0.5;}
+
+  /* ---------- section headers ---------- */
+  .sec-head{margin-bottom:52px;}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--ink);}
+
+  /* ---------- about ---------- */
+  #about .about-grid{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:820px){#about .about-grid{grid-template-columns:1.4fr 1fr;}}
+  #about p{color:var(--ink-dim);max-width:60ch;margin-bottom:16px;}
+  .edu-card{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 28px;
+  }
+  .edu-card h3{font-size:1.05rem;color:var(--ink);margin-bottom:4px;}
+  .edu-card .sub{color:var(--violet);font-size:0.88rem;margin-bottom:14px;}
+  .edu-card .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink-dim);margin-bottom:16px;}
+  .course-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .course-tags span{
+    font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--ink-dim);
+    border:1px solid var(--line);padding:5px 10px;border-radius:999px;
+  }
+
+  /* ---------- skills ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+  .skill-card{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;transition:border-color .25s, transform .25s;
+  }
+  .skill-card:hover{border-color:var(--violet-dim);transform:translateY(-3px);}
+  .skill-card .tag{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .skill-card ul{list-style:none;}
+  .skill-card li{color:var(--ink);font-size:0.92rem;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,0.06);}
+  .skill-card li:last-child{border-bottom:none;}
+
+  /* ---------- experience timeline ---------- */
+  .timeline{border-left:1px solid var(--line);padding-left:32px;display:flex;flex-direction:column;gap:44px;}
+  .tl-item{position:relative;}
+  .tl-item::before{
+    content:"";position:absolute;left:-37.5px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg-void);border:2px solid var(--violet);
+  }
+  .tl-item .when{font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:var(--cyan);margin-bottom:6px;display:block;}
+  .tl-item h3{font-size:1.1rem;color:var(--ink);margin-bottom:2px;}
+  .tl-item .org{color:var(--ink-dim);font-size:0.88rem;margin-bottom:10px;}
+  .tl-item p{color:var(--ink-dim);font-size:0.92rem;max-width:64ch;}
+  .tl-item ul{margin-top:8px;padding-left:18px;color:var(--ink-dim);font-size:0.92rem;}
+  .tl-item li{margin-bottom:4px;}
+
+  /* ---------- projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:1fr;gap:22px;}
+  @media(min-width:760px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  .proj-card{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;height:100%;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .proj-card:hover{transform:translateY(-4px);border-color:var(--violet-dim);box-shadow:0 12px 40px rgba(167,139,250,0.12);}
+  .proj-num{font-family:'JetBrains Mono',monospace;color:var(--violet-dim);font-size:0.8rem;margin-bottom:12px;}
+  .proj-card h3{font-size:1.15rem;color:var(--ink);margin-bottom:8px;}
+  .proj-stack{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--cyan);margin-bottom:14px;}
+  .proj-card p{color:var(--ink-dim);font-size:0.9rem;flex-grow:1;}
+  .proj-card p + p{margin-top:8px;}
+
+  /* ---------- achievements ---------- */
+  .ach-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:760px){.ach-grid{grid-template-columns:1fr 1fr;}}
+  .ach-card{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;
+  }
+  .ach-icon{
+    width:34px;height:34px;border-radius:50%;flex:none;
+    background:radial-gradient(circle, rgba(246,193,119,0.25), transparent 70%);
+    border:1px solid var(--amber);display:flex;align-items:center;justify-content:center;
+    color:var(--amber);font-size:0.85rem;font-family:'JetBrains Mono',monospace;
+  }
+  .ach-card h4{font-size:0.98rem;color:var(--ink);margin-bottom:4px;}
+  .ach-card p{font-size:0.84rem;color:var(--ink-dim);}
+
+  /* ---------- patent ---------- */
+  .patent-card{
+    background:linear-gradient(135deg, var(--bg-panel), var(--bg-panel-2));
+    border:1px solid var(--line);border-radius:var(--radius);padding:32px;
+  }
+  .patent-card .status{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+    color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:4px 12px;margin-bottom:16px;
+  }
+  .patent-card h3{font-size:1.15rem;color:var(--ink);margin-bottom:10px;max-width:50ch;}
+  .patent-card p{color:var(--ink-dim);font-size:0.92rem;max-width:65ch;}
+
+  /* ---------- contact / footer ---------- */
+  #contact{text-align:center;padding-bottom:60px;}
+  #contact h2{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:18px;}
+  #contact p{color:var(--ink-dim);max-width:50ch;margin:0 auto 36px;}
+  .contact-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+  footer{
+    text-align:center;padding:32px 6vw 48px;color:var(--ink-dim);font-size:0.8rem;
+    font-family:'JetBrains Mono',monospace;position:relative;z-index:1;
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <div class="logo">srinidhi<span>.</span>shetty</div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="btn btn-ghost" style="padding:9px 18px;font-size:0.8rem;">Get in touch</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Bengaluru, India · Final-year ECE</div>
+    <h1>Srinidhi Shetty</h1>
+    <div class="hero-role">Electronics &amp; Communication Engineer<span class="sep">·</span>VLSI &amp; Embedded Systems</div>
+    <p class="hero-desc">I build things at the intersection of silicon and signal — from RTL to real-time systems — with a running curiosity about what's happening a few hundred kilometers straight up.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-solid">View Projects</a>
+      <a href="/Srinidhi_Shetty-Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download Résumé</a>
+    </div>
+  </div>
+  <div class="orbit-wrap">
+    <div class="orbit-ring"><div class="sat"></div></div>
+    <div class="orbit-ring r2"><div class="sat sat2"></div></div>
+    <div class="portrait"><img src="photo.jpg" alt="Portrait of Srinidhi Shetty" /></div>
+  </div>
+</section>
+
+<svg class="trace" viewBox="0 0 1200 40" preserveAspectRatio="none">
+  <path d="M0 20 H420 L450 5 H520 L550 20 H1200" fill="none" stroke="rgba(167,139,250,0.35)" stroke-width="1.5"/>
+  <circle cx="450" cy="5" r="3" fill="#5eead4"/>
+  <circle cx="550" cy="20" r="3" fill="#a78bfa"/>
+</svg>
+
+<section id="about">
+  <div class="sec-head">
+    <div class="eyebrow">01 — About</div>
+    <h2>Grounded in circuits, reaching for orbit.</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>I'm a final-year Electronics &amp; Communication Engineering student at Dayananda Sagar College of Engineering, Bengaluru — spending most of my time in RTL simulators and the rest of it thinking about exoplanets.</p>
+      <p>My work leans toward digital design and verification: building things in Verilog/SystemVerilog, taking them through simulation and synthesis, and understanding exactly why a circuit behaves the way it does. Outside coursework, I lead hardware teams into national hackathons — most recently building an AI pipeline for exoplanet detection with Team CELESTIA for ISRO's Bharat Antariksh Hackathon.</p>
+      <p>I'm currently working toward a CERN Technical Studentship in electronics/solid-state physics, and building an open-source VLSI portfolio aimed at GSoC 2027.</p>
+    </div>
+    <div class="edu-card">
+      <h3>Dayananda Sagar College of Engineering</h3>
+      <div class="sub">B.E. — Electronics &amp; Communication Engineering</div>
+      <div class="meta"><span>Aug 2023 — June 2027</span><span>CGPA 7.16/10.0</span></div>
+      <div class="course-tags">
+        <span>Digital System Design</span>
+        <span>Computer Architecture</span>
+        <span>VLSI Design</span>
+        <span>Microprocessors &amp; Microcontrollers</span>
+        <span>Signals &amp; Systems</span>
+        <span>Embedded Systems</span>
+        <span>DSA</span>
+        <span>CMOS Technology</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-head">
+    <div class="eyebrow">02 — Skills</div>
+    <h2>Tools of the trade.</h2>
+  </div>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <span class="tag">HDL</span>
+      <ul><li>SystemVerilog</li><li>Verilog HDL</li></ul>
+    </div>
+    <div class="skill-card">
+      <span class="tag">Languages</span>
+      <ul><li>C++</li><li>C</li><li>Embedded C</li></ul>
+    </div>
+    <div class="skill-card">
+      <span class="tag">EDA &amp; Simulation</span>
+      <ul><li>ModelSim</li><li>Vivado</li><li>Quartus Prime</li><li>Cadence Virtuoso</li><li>EDA Playground</li><li>MATLAB</li></ul>
+    </div>
+    <div class="skill-card">
+      <span class="tag">OS &amp; Scripting</span>
+      <ul><li>Linux</li><li>Tcl Scripting</li></ul>
+    </div>
+    <div class="skill-card">
+      <span class="tag">Domains</span>
+      <ul><li>RTL Design &amp; Verification</li><li>FPGA Prototyping</li><li>Embedded Systems</li><li>VLSI Design &amp; CMOS</li><li>Physical Design</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-head">
+    <div class="eyebrow">03 — Experience</div>
+    <h2>Where I've put in the hours.</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="when">2024 — Present</span>
+      <h3>Active Member, Technical Committee</h3>
+      <div class="org">IEEE Bangalore — DSCE Chapter</div>
+      <p>Contributing to technical events, workshops, and seminars on electronics, embedded systems, and emerging hardware technologies.</p>
+      <ul>
+        <li>Collaborated on IEEE-driven hardware hackathons and innovation challenges</li>
+        <li>Gained hands-on experience in system-level design and performance analysis</li>
+      </ul>
+    </div>
+    <div class="tl-item">
+      <span class="when">Ongoing</span>
+      <h3>Extracurricular Involvement</h3>
+      <div class="org">IEDC (Entrepreneurship Club) · Theatre Club · Literature Club</div>
+      <p>Balancing the technical with the creative — from pitching ideas at the entrepreneurship cell to performing on stage.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-head">
+    <div class="eyebrow">04 — Projects</div>
+    <h2>Things I've built.</h2>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <span class="proj-num">01</span>
+      <h3>Verilog-Based AES Encryption Engine</h3>
+      <div class="proj-stack">SystemVerilog · ModelSim · Vivado</div>
+      <p>Designed and implemented a fully functional AES-128 encryption engine covering SubBytes, ShiftRows, MixColumns, and AddRoundKey transformations.</p>
+      <p>Performed RTL simulation and functional verification against standard NIST test vectors, then analyzed throughput, latency, and resource utilization on Xilinx FPGA — optimizing the critical path for maximum clock frequency.</p>
+    </div>
+    <div class="proj-card">
+      <span class="proj-num">02</span>
+      <h3>Multi Clock Domain Controller IC</h3>
+      <div class="proj-stack">SystemVerilog · Quartus Prime · EDA Playground</div>
+      <p>Designed an MCD controller to manage safe data transfer across asynchronous clock domains using synchronizer FIFOs and handshaking protocols.</p>
+      <p>Implemented CDC techniques — two-flop synchronizers and Gray-coded FIFO pointers — to eliminate metastability, then verified timing closure through functional simulation.</p>
+    </div>
+    <div class="proj-card">
+      <span class="proj-num">03</span>
+      <h3>SEVEN — Smart EV Energy Network</h3>
+      <div class="proj-stack">Peer-to-Peer Energy Sharing Platform</div>
+      <p>Designed a smart EV energy-sharing network to reduce range anxiety through P2P energy transfer and intelligent charging station discovery.</p>
+      <p>Built a workflow integrating battery health monitoring (SoC/SoH), authentication, AI-assisted routing, and a credit-based transaction system for V2V/V2G exchange.</p>
+    </div>
+    <div class="proj-card">
+      <span class="proj-num">04</span>
+      <h3>Drishti — Smart Glasses for the Visually Impaired</h3>
+      <div class="proj-stack">Embedded Systems · Hardware-AI Integration</div>
+      <p>Designed and built an MVP prototype of AI-enabled smart glasses, backed by research into product prototyping, market standards, and go-to-market scaling.</p>
+      <p>Shortlisted for Samsung Electronics' CSR initiative, Samsung Solve for Tomorrow.</p>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="sec-head">
+    <div class="eyebrow">05 — Achievements</div>
+    <h2>Recognition along the way.</h2>
+  </div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <div class="ach-icon">★</div>
+      <div><h4>National Top 50 — Team Drishti</h4><p>Samsung Solve for Tomorrow 2025, under the Environment &amp; Sustainability theme.</p></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🥇</div>
+      <div><h4>1st Place — Nukkad Natak Competition</h4><p>IIT Kharagpur Spring Fest 2026 — Gold Medal, cross-disciplinary excellence.</p></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">◆</div>
+      <div><h4>Special Domain Award</h4><p>EthiCare Hardware Hackathon, DSCE — innovative hardware design under ethical computing constraints.</p></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">▲</div>
+      <div><h4>Runners-Up — Electrothon 1.0</h4><p>Hardware Hackathon hosted by IEEE DSCE Chapter and VinyanaTech.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="patent">
+  <div class="sec-head">
+    <div class="eyebrow">06 — Patent</div>
+    <h2>Filed &amp; pending.</h2>
+  </div>
+  <div class="patent-card">
+    <span class="status">Indian Patent Application — Submitted</span>
+    <h3>Low Cost, Vehicle Independent, Driver Calibrated Brake Drag Detection and Alarm System</h3>
+    <p>A cost-effective embedded hardware system for real-time brake drag detection, leveraging sensor fusion and signal processing techniques.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="eyebrow" style="justify-content:center;">07 — Contact</div>
+  <h2>Let's build something.</h2>
+  <p>Open to internships, research collaborations, and hackathon teams working on hardware, VLSI, or space-tech problems.</p>
+  <div class="contact-links">
+    <a href="mailto:iamshettysrinidhi@gmail.com" class="btn btn-solid">Email Me</a>
+    <a href="https://www.linkedin.com/in/srinidhi-shetty-3559101b7" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    <a href="https://github.com/srinidhiishetty05" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    <a href="tel:+918310154673" class="btn btn-ghost">+91 83101 54673</a>
+  </div>
+</section>
+
+<footer>© 2026 Srinidhi Shetty — built with circuits &amp; curiosity.</footer>
+
+<script>
+  // lightweight starfield — respects reduced motion
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = document.body.scrollHeight;
+    const count = Math.min(160, Math.floor((w*h)/14000));
+    stars = Array.from({length: count}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.3 + 0.2,
+      s: Math.random()*0.4 + 0.05,
+      o: Math.random()*0.5 + 0.3
+    }));
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = '#e7e6f5';
+    stars.forEach(st=>{
+      ctx.globalAlpha = st.o;
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+      ctx.fill();
+      if(!prefersReduced){ st.y += st.s; if(st.y > h) st.y = 0; }
+    });
+    ctx.globalAlpha = 1;
+    if(!prefersReduced) requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+</script>
+
+</body>
+</html>
